@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{COURSE}} — {{EXAM}} Cheat Sheet</title>
+<!-- MATH_RENDERING: katex-cdn. For unicode-only, delete the three KaTeX tags below.
+     For katex-inline, replace them with inlined katex.min.css / katex.min.js / auto-render.min.js. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<style>
+  /* Paper: change size to A4 if required by ALLOWED_FORMAT */
+  @page { size: letter; margin: 8mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; color: #000; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9pt;          /* dense-readable; ultra-dense: 7–7.5pt, moderate: 10pt */
+    line-height: 1.18;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet { column-count: 3; column-gap: 3mm; column-fill: auto; }
+  section { break-inside: avoid-column; margin: 0 0 1.5mm; border: 0.5pt solid #000; }
+  section > h2 {
+    margin: 0; padding: 0.4mm 1mm;
+    background: #111; color: #fff;
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.02em;
+  }
+  section > .body { padding: 0.6mm 1mm; }
+  h3 { margin: 0.8mm 0 0.3mm; font-size: 8.5pt; border-bottom: 0.4pt solid #888; }
+  p, ul, ol { margin: 0.3mm 0; }
+  ul, ol { padding-left: 3.5mm; }
+  li { margin: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 0.4mm 0; }
+  th, td { border: 0.4pt solid #999; padding: 0.3mm 0.6mm; vertical-align: top; text-align: left; }
+  th { background: #ddd; font-weight: 700; }
+  .rule::before { content: "▸ "; font-weight: 700; }
+  .trap { background: #fde8e8; }
+  .weak { background: #fff6d6; }            /* weak-topic rescue note */
+  .k { font-weight: 700; }
+  .mini { font-size: 8pt; color: #333; }
+  svg { max-width: 100%; height: auto; display: block; }
+  figcaption { font-size: 7.5pt; color: #333; }
+  #title-bar {
+    column-span: all; border: none; margin-bottom: 1.5mm;
+    display: flex; flex-wrap: wrap; gap: 0 3mm; align-items: baseline;
+    border-bottom: 1pt solid #000; padding-bottom: 0.6mm;
+  }
+  #title-bar strong { font-size: 10pt; }
+  #title-bar .meta { font-size: 8pt; }
+  #command-center { column-span: all; }
+  #unverified { border: 1pt dashed #b00; }
+  #unverified > h2 { background: #b00; }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- Always: course, exam, scope, page count, confidence note, direction status -->
+  <header id="title-bar">
+    <strong>{{COURSE}} — {{EXAM}}</strong>
+    <span class="meta">Scope: {{SCOPE}}</span>
+    <span class="meta">{{PAGES}} · {{PAPER}}</span>
+    <span class="meta">Confidence: {{CONFIDENCE_NOTE}}</span>
+    <span class="meta">Direction: {{DIRECTION_STATUS}}</span>
+  </header>
+
+  <!-- Only for 3+ page sheets; delete otherwise -->
+  <section id="command-center">
+    <h2>Command Center</h2>
+    <div class="body">
+      <table>
+        <tr><th>Problem type / cue</th><th>Method</th><th>Where</th></tr>
+        <tr><td>{{CUE}}</td><td>{{METHOD}}</td><td>{{SECTION_REF}}</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Always: If X → Y rules from past exams, or a single confidence-limitation note -->
+  <section id="exam-playbook">
+    <h2>Exam Playbook</h2>
+    <div class="body">
+      <p class="rule">If {{X}} → {{Y}}</p>
+    </div>
+  </section>
+
+  <!-- Always -->
+  <section id="formulas">
+    <h2>Formulas</h2>
+    <div class="body">
+      <table>
+        <tr><th>Formula</th><th>Variables</th><th>When to use</th><th>Trap</th></tr>
+        <tr><td>{{FORMULA}}</td><td>{{VARS}}</td><td>{{WHEN}}</td><td>{{TRAP}}</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Always: A vs B comparisons, recognition cues -->
+  <section id="concepts">
+    <h2>Concepts</h2>
+    <div class="body">
+      <table>
+        <tr><th></th><th>{{A}}</th><th>{{B}}</th></tr>
+        <tr><td>{{ASPECT}}</td><td>{{A_VAL}}</td><td>{{B_VAL}}</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Always: trigger → minimal steps → final check -->
+  <section id="procedures">
+    <h2>Procedures</h2>
+    <div class="body">
+      <h3>{{PROCEDURE_NAME}}</h3>
+      <p><span class="k">Trigger:</span> {{TRIGGER}}</p>
+      <ol><li>{{STEP}}</li></ol>
+      <p><span class="k">Check:</span> {{CHECK}}</p>
+    </div>
+  </section>
+
+  <!-- If useful; delete otherwise -->
+  <section id="diagrams">
+    <h2>Diagrams</h2>
+    <div class="body">
+      <figure style="margin:0">
+        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>{{CAPTION}}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Always -->
+  <section id="traps">
+    <h2>Traps</h2>
+    <div class="body">
+      <ul><li class="trap">{{TRAP_ITEM}}</li></ul>
+    </div>
+  </section>
+
+  <!-- Training-data content with no provided source. Omit section if truly empty. -->
+  <section id="unverified">
+    <h2>⚠ Unverified — confirm before exam</h2>
+    <div class="body">
+      <ul><li>⚠ {{UNVERIFIED_ITEM}}</li></ul>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
